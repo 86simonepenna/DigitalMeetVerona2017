@@ -1,0 +1,24 @@
+﻿<Application
+    x:Class="DigitalMeet.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DigitalMeet"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+
+        <SolidColorBrush x:Key="DMGreyColor" Color="#727376"/>
+        <SolidColorBrush x:Key="DMRedColor" Color="#CE2F4A"/>
+
+        <x:Boolean x:Key="FalseValue">False</x:Boolean>
+        <x:Boolean x:Key="TrueValue">True</x:Boolean>
+
+
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="Padding" Value="30,15"></Setter>
+        </Style>
+
+    </Application.Resources>
+
+</Application>

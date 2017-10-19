@@ -1,0 +1,78 @@
+﻿<Page
+    x:Class="DigitalMeet.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DigitalMeet"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+
+        <SolidColorBrush x:Key="BaseAppColor" Color="#DBDBDB"/>
+        <SolidColorBrush x:Key="BaseListBoxColor" Color="#ACACAC"/>
+
+    </Page.Resources>
+
+    <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
+    <Grid Background="{StaticResource BaseAppColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="Button_start"
+                Content="START"
+                Background="{StaticResource DMGreyColor}"
+                Foreground="White"
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Click="StartRecognition"/>
+
+        <Button x:Name="Button_stop"
+                Content="STOP"
+                Grid.Row="0"
+                Background="{StaticResource DMGreyColor}"
+                Foreground="White"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Visibility="Collapsed"
+                Click="StopRecognition"/>
+
+        <Image x:Name="DM_logo"
+               Grid.Row="1"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Height="1100"
+               Width="1100"
+               Source="/Assets/dm17.png"/>
+
+        <Grid x:Name="Grid_loading" 
+              Grid.Row="1" 
+              Visibility="Collapsed" 
+              Height="300">
+            
+            <ProgressRing IsActive="True"
+                          Foreground="{StaticResource DMGreyColor}"
+                          VerticalAlignment="Top"
+                          Height="100" 
+                          Width="100"/>
+
+            <TextBlock Text="Loading words in progress..."
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       TextAlignment="Center">
+            </TextBlock>
+        </Grid>
+
+        <ListBox x:Name="List_wordsRicognized"
+                 ItemsSource="{x:Bind WordsRecognized}" 
+                 Background="{StaticResource BaseListBoxColor}"
+                 Grid.Row="1" 
+                 Visibility="Collapsed" />
+
+    </Grid>
+
+</Page>

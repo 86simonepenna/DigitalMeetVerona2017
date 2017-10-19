@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<grammar version="1.0"
+         xml:lang="it-IT"
+         root="rootRule"
+         tag-format="semantics/1.0"
+         mode="voice"
+         xmlns="http://www.w3.org/2001/06/grammar">
+
+  <rule id="rootRule" scope="public">
+    <one-of>
+      <item>
+        ok holo <tag>out.cmd="OK_HOLO"</tag>
+      </item>
+      <item>
+        start<tag>out.cmd="START_FOUND"</tag>
+      </item>
+      <item>
+        stop <tag>out.cmd="STOP_FOUND"</tag>
+      </item>
+    </one-of>
+  </rule>
+</grammar>
