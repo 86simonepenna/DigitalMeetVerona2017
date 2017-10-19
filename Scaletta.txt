@@ -1,0 +1,30 @@
+schema lezione hololens
+
+COSA SVULIPPIAMO:
+	- applicazione UWP per riconoscere il testo scritto, utilizzabile con comandi vocali 
+		1. creare progetto uwp in vs2017
+		2. \Assets\dm17.png
+		3. creare UI
+		4. definizione Application.Resources in App.xaml
+	
+COMPONENTI:
+	- I file Config.json e Config.cs
+		1. pacchetto Newtonsoft.Json
+	
+	- Servizio OCR di Microsoft Azure
+		1. CognitiveService.cs
+		2. Models/Ocr.cs
+		3. permessi internet
+		
+	- Scattare una foto 
+		1. CameraService.cs
+		2. permessi webcam
+		
+	- Riconoscimento vocale
+		1. definizione delle grammatiche personalizzate (srgs -> Speech Recognition Grammar Specification)
+		2. SpeakingService.cs
+		3. permessi microfono 
+		4. \Assets\Speech-On.wav
+		
+	- Collegare i vari pezzi
+		1. MaiPage.xaml.csCreare
