@@ -3,9 +3,15 @@
 
 Collaboration with [Marco Zanetti](https://github.com/Zanna-93)
 
-**DESCRIPTION**
+**INTRODUCTION** 
+
 Small UWP project to intercept several word from a photo taken from webcam using [Microsoft Cognitive Services](https://azure.microsoft.com/it-it/services/cognitive-services/computer-vision/).
 
 Instead there are two grammar files for vocal recognition. (3 words)
 
-This project has been presented to [Digital Meet 2017 - Verona (italy)](http://digitalmeet.it/)
+This project has been presented to [Digital Meet 2017 - Verona (italy)](http://digitalmeet.it/).
+
+ 
+ **DESCRIPTION**
+
+Modify config.json file and insert your cognitive service key from azure.
