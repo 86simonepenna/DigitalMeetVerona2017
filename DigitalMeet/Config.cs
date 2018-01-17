@@ -7,6 +7,8 @@ public class Config
     public string CognitiveComputeVisionKey { get; set; }
     public string CognitiveOcrEndpoint { get; set; }
     public int ScanTimeDelay { get; set; }
+    public string MicrosoftTranslatorEndpoint { get; set; }
+    public string MicrosoftTranslatorKey { get; set; }
 
     private static Config instance;
 

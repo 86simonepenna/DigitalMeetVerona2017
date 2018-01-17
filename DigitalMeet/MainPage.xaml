@@ -31,6 +31,29 @@
                 VerticalAlignment="Top"
                 Click="StartRecognition"/>
 
+        <Grid Grid.Row="0"
+              HorizontalAlignment="Right"
+              Padding="0,10,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"
+                       FontWeight="Bold"
+                       FontSize="25"
+                       Text="Translate to: "/>
+
+            <ComboBox x:Name="TargetLanguage"
+                      Grid.Column="1"
+                      HorizontalAlignment="Right"
+                      FontSize="20"
+                      Width="100"
+                      ItemsSource="{x:Bind ToLanguages}"/>
+        </Grid>
+
         <Button x:Name="Button_stop"
                 Content="STOP"
                 Grid.Row="0"
@@ -67,11 +90,24 @@
             </TextBlock>
         </Grid>
 
-        <ListBox x:Name="List_wordsRicognized"
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <ListBox x:Name="List_wordsRecognized"
                  ItemsSource="{x:Bind WordsRecognized}" 
                  Background="{StaticResource BaseListBoxColor}"
-                 Grid.Row="1" 
+                 Grid.Column="0"
                  Visibility="Collapsed" />
+            
+            <ListBox x:Name="List_wordsTranslated"
+                 ItemsSource="{x:Bind WordsTranslated}" 
+                 Background="{StaticResource BaseListBoxColor}"
+                 Grid.Column="1"
+                 Visibility="Collapsed" />
+        </Grid> 
 
     </Grid>
 

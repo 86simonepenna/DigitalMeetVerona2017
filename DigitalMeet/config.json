@@ -1,6 +1,8 @@
 ﻿{
-  "CognitiveComputeVisionKey": "df93f987dcd047858d915670262794a9",
+  "CognitiveComputeVisionKey": "6fde8dd326af41168c1b3a08a377b5ba",
   "CognitiveOcrEndpoint": "https://westeurope.api.cognitive.microsoft.com/vision/v1.0/ocr",
   "ScanTimeDelay": 2000,
+  "MicrosoftTranslatorEndpoint": "https://api.microsofttranslator.com/v2/Http.svc/TranslateArray",
+  "MicrosoftTranslatorKey": "393bdee972134048aeb9410df3b9359c"
 
 }

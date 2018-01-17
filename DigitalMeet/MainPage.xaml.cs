@@ -2,24 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using UIDispatcher = Windows.ApplicationModel.Core.CoreApplication;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -33,6 +21,9 @@ namespace DigitalMeet
     {
 
         public ObservableCollection<string> WordsRecognized { get; set; }
+        public ObservableCollection<string> WordsTranslated { get; set; }
+        public List<string> ToLanguages;
+
         private bool _isScanning;
         private string _buttonText;
 
@@ -42,10 +33,21 @@ namespace DigitalMeet
         {
             _isScanning = false;
             WordsRecognized = new ObservableCollection<string>();
+            WordsTranslated = new ObservableCollection<string>();
             speakingService = new SpeakingService();
             speakingService.SpeechRecognized += SpeakingService_SpeechRecognized;
 
             this.InitializeComponent();
+
+            ToLanguages = new List<string>();
+            ToLanguages.Add("en");
+            ToLanguages.Add("es");
+            ToLanguages.Add("fr");
+            ToLanguages.Add("de");
+            ToLanguages.Add("ru");
+            TargetLanguage.SelectedItem = ToLanguages[0];
+
+
 
         }
 
@@ -54,10 +56,9 @@ namespace DigitalMeet
             CameraService cameraService = new CameraService();
             CognitiveService cognitiveService = new CognitiveService();
 
-            //int countSearchTimes = 0;
-
             _isScanning = true;
-            List_wordsRicognized.Visibility = Visibility.Collapsed;
+            List_wordsRecognized.Visibility = Visibility.Collapsed;
+            List_wordsTranslated.Visibility = Visibility.Collapsed;
             Button_start.Visibility = Visibility.Collapsed;
             Button_stop.Visibility = Visibility.Visible;
             Grid_loading.Visibility = Visibility.Visible;
@@ -73,7 +74,6 @@ namespace DigitalMeet
 
                 while (_isScanning)
                 {
-                    //countSearchTimes++;
 
                     Task.Delay(Config.Instance.ScanTimeDelay).Wait();
 
@@ -88,21 +88,32 @@ namespace DigitalMeet
 
                         if (_words != null && _words.Count > 0)
                         {
-                            await UIDispatcher.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            await UIDispatcher.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                             {
                                 WordsRecognized.Clear();
+                                WordsTranslated.Clear();
+
                                 foreach (var item in _words)
                                 {
                                     WordsRecognized.Add(item);
                                 }
+
+                                var translatedWords = await cognitiveService.TranslateRecognizedWords(_words, "it", (string)TargetLanguage.SelectedItem);
+
+                                foreach (var word in translatedWords)
+                                {
+                                    WordsTranslated.Add(word);
+                                }
+
                                 Grid_loading.Visibility = Visibility.Collapsed;
-                                List_wordsRicognized.Visibility = Visibility.Visible;
+                                List_wordsRecognized.Visibility = Visibility.Visible;
+                                List_wordsTranslated.Visibility = Visibility.Visible;
                                 Button_start.Visibility = Visibility.Visible;
                                 Button_stop.Visibility = Visibility.Collapsed;
                             });
-
                             _isScanning = false;
                         }
+
                     }
                 }
             }).Wait();
@@ -118,7 +129,8 @@ namespace DigitalMeet
             _isScanning = false;
             Button_start.Visibility = Visibility.Visible;
             Button_stop.Visibility = Visibility.Collapsed;
-            List_wordsRicognized.Visibility = Visibility.Collapsed;
+            List_wordsRecognized.Visibility = Visibility.Collapsed;
+            List_wordsTranslated.Visibility = Visibility.Collapsed;
             Grid_loading.Visibility = Visibility.Collapsed;
             DM_logo.Visibility = Visibility.Visible;
         }
