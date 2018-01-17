@@ -1,5 +1,6 @@
 ﻿{
-  "CognitiveComputeVisionKey": "<key-azure-cognitive-services>",
+  "CognitiveComputeVisionKey": "df93f987dcd047858d915670262794a9",
   "CognitiveOcrEndpoint": "https://westeurope.api.cognitive.microsoft.com/vision/v1.0/ocr",
-   "ScanTimeDeley": 2000
+  "ScanTimeDelay": 2000,
+
 }

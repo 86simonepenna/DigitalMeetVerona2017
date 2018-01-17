@@ -53,8 +53,6 @@ namespace DigitalMeet.Services
             return false;
         }
 
-      
-
         public async Task<InMemoryRandomAccessStream> CapturePhoto()
         {
             var stream = new InMemoryRandomAccessStream();

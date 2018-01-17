@@ -38,7 +38,6 @@ namespace DigitalMeet
 
         SpeakingService speakingService;
 
-
         public MainPage()
         {
             _isScanning = false;
@@ -55,8 +54,7 @@ namespace DigitalMeet
             CameraService cameraService = new CameraService();
             CognitiveService cognitiveService = new CognitiveService();
 
-
-            int countSearchTimes = 0;
+            //int countSearchTimes = 0;
 
             _isScanning = true;
             List_wordsRicognized.Visibility = Visibility.Collapsed;
@@ -75,9 +73,9 @@ namespace DigitalMeet
 
                 while (_isScanning)
                 {
-                    countSearchTimes++;
+                    //countSearchTimes++;
 
-                    Task.Delay(Config.Instance.ScanTimeDeley).Wait();
+                    Task.Delay(Config.Instance.ScanTimeDelay).Wait();
 
                     if (_isScanning)
                     {
@@ -136,7 +134,6 @@ namespace DigitalMeet
             {
                 await UIDispatcher.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-
                     SpeakingService.SPEECH_OPERATIONS speechOperation = (SpeakingService.SPEECH_OPERATIONS)sender;
 
                     switch (speechOperation)

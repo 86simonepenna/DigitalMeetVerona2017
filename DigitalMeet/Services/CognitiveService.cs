@@ -19,17 +19,10 @@ namespace DigitalMeet.Services
             httpClient = new HttpClient();
         }
 
-        public string ReadText(string text)
-        {
-            return "ok";
-        }
-
         public async Task<IList<string>> ReadTextFromImage(byte[] image)
         {
-
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", Config.Instance.CognitiveComputeVisionKey);
-
 
             var content = new ByteArrayContent(image);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
@@ -42,24 +35,18 @@ namespace DigitalMeet.Services
 
             if (ocrResult != null && ocrResult.regions != null)
             {
-                foreach (var region in ocrResult.regions)   
+                foreach (var region in ocrResult.regions)
                 {
                     foreach (var line in region.Lines)
                     {
                         foreach (var word in line.Words)
                         {
-
-
-                                wordsRecognized.Add(word.Text);
+                            wordsRecognized.Add(word.Text);
                         }
                     }
                 }
-
             }
-
             return wordsRecognized;
-
         }
-
     }
 }
