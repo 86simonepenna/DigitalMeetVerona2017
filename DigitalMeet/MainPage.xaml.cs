@@ -47,8 +47,6 @@ namespace DigitalMeet
             ToLanguages.Add("ru");
             TargetLanguage.SelectedItem = ToLanguages[0];
 
-
-
         }
 
         private void Start()
