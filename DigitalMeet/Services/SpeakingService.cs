@@ -79,7 +79,6 @@ namespace DigitalMeet.Services
                 _mediaElement.SetSource(voiceStream, voiceStream.ContentType);
                 //_mediaElement.Play();
             }
-
         }
 
         /// <summary>
@@ -132,51 +131,11 @@ namespace DigitalMeet.Services
                 }
 
                 await StartRecognizing(isVoiceActive);
-
-                //if (isVoiceActive)
-                //{
-                //    switch (result.Text.ToLower())
-                //    {
-                //        case "find":
-                //            currentTime = DateTime.Now;
-                //            SpeechRecognized(SPEECH_OPERATIONS.START_DEVICE_FOUND, null);
-                //            break;
-                //        case "home":
-                //            currentTime = DateTime.Now;
-                //            SpeechRecognized(SPEECH_OPERATIONS.GO_HOME, null);
-                //            break;
-                //        case "telemetry":
-                //            currentTime = DateTime.Now;
-                //            SpeechRecognized(SPEECH_OPERATIONS.GO_TELEMETRY, null);
-                //            break;
-                //        case "remote support":
-                //            currentTime = DateTime.Now;
-                //            SpeechRecognized(SPEECH_OPERATIONS.REMOTE_SUPPORT, null);
-                //            break;
-                //        case "documents":
-                //            currentTime = DateTime.Now;
-                //            SpeechRecognized(SPEECH_OPERATIONS.DOCUMENTS, null);
-                //            break;
-                //        default:
-                //            break;
-                //    }
-                //}
-
-
-                //if (result.Text.ToLower() == "ciao" && isVoiceActive == false)
-                //{
-                //    isVoiceActive = true;
-                //    currentTime = DateTime.Now;
-                //    SpeechRecognized(SPEECH_OPERATIONS.OK_HOLO, null);
-                //}
-
             }
             catch (Exception e)
             {
                 throw;
             }
-
-
         }
     }
 }
